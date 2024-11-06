@@ -63,7 +63,7 @@ components:
     size: 1G
 - name: mongo
   container:
-    image: mongo:latest
+    image: registry.redhat.io/rhscl/mongodb-36-rhel7@sha256:9f799d356d7d2e442bde9d401b720600fd9059a3d8eefea6f3b2ffa721c0dc73
     env:
       - name: MONGODB_USER
         value: user
