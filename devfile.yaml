@@ -41,6 +41,7 @@ components:
     - name: https-node
       protocol: https
       targetPort: 3000
+      exposure: public
     - exposure: none
       name: debug
       targetPort: 5858
@@ -48,9 +49,18 @@ components:
     - name: DEBUG_PORT
       value: "5858"
     image: registry.access.redhat.com/ubi8/nodejs-18:1-32
-    memoryLimit: 1024Mi
+    memoryLimit: '1Gi'
+    memoryRequest: '512Mi'
+    cpuLimit: '0.5'
+    cpuRequest: '0.25'
     mountSources: true
+    volumeMounts:
+      - name: npm
+        path: /home/user/.npm
   name: runtime
+- name: npm
+  volume:
+    size: 1G
 metadata:
   description: Node.js 18 application
   displayName: Node.js Runtime
